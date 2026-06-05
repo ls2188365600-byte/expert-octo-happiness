@@ -1,0 +1,88 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+          <!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>AO3 Tag Dice 🎲</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+    body {margin:0;padding:0;font-family:'Noto Sans SC',system-ui,sans-serif;background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);color:#e0e0ff;min-height:100vh;display:flex;align-items:center;justify-content:center;}
+    .container {max-width:820px;width:92%;background:rgba(20,20,40,0.9);backdrop-filter:blur(16px);border-radius:20px;border:1px solid rgba(100,100,255,0.3);box-shadow:0 20px 50px rgba(0,0,0,0.6);padding:35px 30px;}
+    h1 {background:linear-gradient(90deg,#a78bfa,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:2.8rem;text-align:center;margin:0 0 8px 0;}
+    .subtitle {text-align:center;color:#b0b0ff;margin-bottom:30px;}
+    .controls {display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:30px;}
+    button {padding:12px 26px;border:none;border-radius:50px;font-size:1.05rem;cursor:pointer;transition:all 0.3s;}
+    .roll-btn {background:linear-gradient(90deg,#7c3aed,#db2777);color:white;font-size:1.25rem;padding:16px 45px;}
+    .preset-btn {background:rgba(255,255,255,0.1);color:#ddd;border:1px solid rgba(167,139,250,0.4);}
+    .result-card {background:rgba(15,15,35,0.95);border:1px solid #6b46c1;border-radius:18px;padding:32px;min-height:340px;box-shadow:0 10px 30px rgba(139,92,246,0.3);}
+    .tag {display:inline-block;background:linear-gradient(45deg,#4c1d95,#7e22ce);color:white;padding:9px 20px;margin:8px 6px;border-radius:30px;font-size:1.08rem;box-shadow:0 4px 15px rgba(124,58,237,0.5);}
+    .tag:hover {transform:scale(1.08);box-shadow:0 0 25px #ec4899;}
+    .dimension {color:#c4b5fd;font-weight:500;margin:20px 0 8px;}
+    .actions {text-align:center;margin-top:30px;}
+    .export-btn,.copy-btn {margin:0 8px;padding:12px 28px;}
+    .export-btn {background:linear-gradient(90deg,#10b981,#34d399);color:white;}
+    .copy-btn {background:linear-gradient(90deg,#eab308,#f59e0b);color:white;}
+    .toast {position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#22c55e;color:white;padding:14px 30px;border-radius:50px;box-shadow:0 10px 25px rgba(0,0,0,0.4);opacity:0;transition:0.4s;z-index:999;}
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>AO3 Tag Dice 🎲</h1>
+    <p class="subtitle">随机生成写作灵感 · 自由创作助手</p>
+
+    <div class="controls">
+        <button class="roll-btn" onclick="rollDice()">🎲 Roll 新组合</button>
+        <button class="preset-btn" onclick="applyPreset()">Fluff</button>
+        <button class="preset-btn" onclick="applyPreset()">Angst</button>
+        <button class="preset-btn" onclick="applyPreset()">Slow Burn</button>
+    </div>
+
+    <div id="result" class="result-card">
+        <p style="text-align:center;color:#777;margin-top:100px;">点击 Roll 开始掷骰子...</p>
+    </div>
+
+    <div class="actions">
+        <button class="export-btn" onclick="exportAsImage()">📸 导出图片</button>
+        <button class="copy-btn" onclick="copyTags()">📋 复制标签</button>
+    </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min
